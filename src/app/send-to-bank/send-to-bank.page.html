@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'send_to_bank' | translate}}
+        </ion-title>
+    </ion-toolbar>
+    <div class="banner">
+        <h2 class="animate__animated animate__fadeInUp" style="--animate-duration: .2s;">{{'available_balance' | translate}}</h2>
+        <h1 class="animate__animated animate__fadeInUp" style="--animate-duration: .25s;">{{currency_icon}}{{balance}}</h1>
+    </div>
+</ion-header>
+
+<ion-content fullscreen class="bg_color">
+    <div class="form">
+        <ion-list lines="none">
+            <ion-card>
+                <h2>{{'bank_info' | translate}}</h2>
+
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <ion-label mode="md" position="stacked">{{"bank_name" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="payourRequest.bank_name"></ion-input>
+                </ion-item>
+
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <ion-label mode="md" position="stacked">{{"bank_account_name" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="payourRequest.bank_account_name"></ion-input>
+                </ion-item>
+
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <ion-label mode="md" position="stacked">{{"bank_account_number" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="payourRequest.bank_account_number"></ion-input>
+                </ion-item>
+
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <ion-label mode="md" position="stacked">{{"bank_code" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="payourRequest.bank_code"></ion-input>
+                </ion-item>
+            </ion-card>
+
+            <ion-card class="animate__animated animate__fadeInUp" style=" --animate-duration: .35s;">
+                <ion-item lines="none">
+                    <ion-label mode="md" position="stacked">{{"enter_amount_transfer" | translate}}</ion-label>
+                    <ion-input mode="md" type="number" [(ngModel)]="payourRequest.amount"></ion-input>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .45s;">
+    <ion-button size="large" expand="full" class="btn" (click)="submit()">
+        {{'send_to_bank' | translate}}
+    </ion-button>
+</ion-footer>

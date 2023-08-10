@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{'account' | translate}}</ion-title>
+    </ion-toolbar>
+
+    <div class="banner">
+        <div class="doctor_details d-flex">
+            <div class="img_box center_img">
+                <img *ngIf="profileMe  && profileMe.user.image_url" data-src="{{profileMe.user.image_url}}"
+                    class="crop_img">
+                <img *ngIf="!profileMe || !profileMe.user.image_url" src="assets/images/empty_dp.png" class="crop_img">
+            </div>
+            <div class="text_box" *ngIf="profileMe">
+                <h2 class="animate__animated animate__fadeInUp d-flex" *ngIf="profileMe.name && profileMe.name.length">
+                    {{profileMe.name}}
+                    <ion-icon *ngIf="profileMe.is_verified == 1" class="zmdi zmdi-check-circle ion-text-end"></ion-icon>
+                </h2>
+                <h2 class="animate__animated animate__fadeInUp d-flex"
+                    *ngIf="!(profileMe.name && profileMe.name.length)">{{profileMe.user.name}}</h2>
+                <h3 class="animate__animated animate__fadeInUp" *ngIf="profileMe.user  && profileMe.user.image_url">
+                    {{profileMe.user.mobile_number}}</h3>
+            </div>
+
+            <div *ngIf="!profileMe" class="text_box">
+                <h2>{{'hey_guest' | translate}}</h2>
+                <p [innerHTML]="'alert_login_msg' | translate"></p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="config.demoMode" (click)="buyAppAction()" class="buy_this_app">
+        <h2>
+            <ion-icon class="zmdi zmdi-shopping-cart"></ion-icon>
+            {{"buy_this_app" | translate}}
+        </h2>
+    </div>
+</ion-header>
+
+<ion-content fullscreen class="bg_color">
+    <ion-row>
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="my_profile()">
+            <div class="menu_box">
+                <h2>{{'my_profile' | translate}}</h2>
+                <h3 class="d-flex">{{'set_up_profile' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-account ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="my_documents()">
+            <div class="menu_box">
+                <h2>{{'documents' | translate}}</h2>
+                <h3 class="d-flex" [innerHTML]="'documents_msg' | translate"></h3>
+                <ion-icon class="zmdi zmdi-assignment ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="my_wallet()">
+            <div class="menu_box">
+                <h2>{{'wallet' | translate}}</h2>
+                <h3 class="d-flex" [innerHTML]="'wallet_msg' | translate"></h3>
+                <ion-icon class="zmdi zmdi-balance-wallet ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="contact_us()">
+            <div class="menu_box">
+                <h2>{{'contact_us' | translate}}</h2>
+                <h3 class="d-flex">{{'let_us_help_you' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-email ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="navTncs()">
+            <div class="menu_box">
+                <h2>{{'t_c' | translate}}</h2>
+                <h3 class="d-flex">{{'company_policies' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-assignment ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="faqs()">
+            <div class="menu_box">
+                <h2>{{'faqs' | translate}}</h2>
+                <h3 class="d-flex">{{'quick_answers' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-assignment-alert ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" (click)="change_language()">
+            <div class="menu_box">
+                <h2>{{'language' | translate}}</h2>
+                <h3 class="d-flex">{{'choose_language' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-globe ion-text-end end"></ion-icon>
+
+            </div>
+        </ion-col>
+
+        <ion-col class="animate__animated animate__zoomIn" size="6" *ngIf="profileMe" (click)="logout()">
+            <div class="menu_box">
+                <h2>{{'logout' | translate}}</h2>
+                <h3 class="d-flex">{{'see_you_soon' | translate}}</h3>
+                <ion-icon class="zmdi zmdi-open-in-new ion-text-end end"></ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-content>
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .35s;">
+    <div class="developed_by d-flex" (click)="developed_by()" *ngIf="config.demoMode">
+        <h2>{{"developed_by" | translate}}</h2>
+        <div class="img_box">
+            <img src="assets/images/VT_black_logo.png" class="">
+        </div>
+    </div>
+</ion-footer>

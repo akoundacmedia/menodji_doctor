@@ -1,0 +1,79 @@
+<ion-header>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="d-flex title_inner">
+                <span class="center_title">{{'document_verfication' | translate}}</span>
+                <ion-icon class="zmdi zmdi-sign-in end ion-text-end" (click)="exitApp()" *ngIf="fresh_profile"></ion-icon>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="banner">
+        <img src="assets/images/verfication_img.jpg">
+        <h2 class="ion-text-center">{{'we_need_to_verify_your_id' | translate}}.</h2>
+        <p class="ion-text-center">{{'upload_following_document_by' | translate}}.</p>
+    </div>
+
+    <div class="form">
+
+        <ion-list *ngIf="uploadingDoc" lines="none">
+            <ion-item lines="none">
+                <div class="item_inner d-flex" (click)="pickImage('national_id_passport')">
+                    <ion-icon class="zmdi  zmdi-smartphone-iphone ion-text-start"></ion-icon>
+                    <h3 *ngIf="documents && documents.national_id && documents.national_id.length">{{'uploaded' | translate}}
+                        <span class="end ion-text-end">{{'reupload' | translate}}</span>
+                    </h3>
+                    <h3 *ngIf="!(documents && documents.national_id && documents.national_id.length)">
+                        {{'national_id_passport' | translate}}
+                        <span class="end ion-text-end">{{'upload' | translate}}</span>
+                    </h3>
+                    <ion-icon [ngClass]="(documents && documents.national_id && documents.national_id.length) ? 'zmdi zmdi-check-circle ion-text-end end' : 'zmdi zmdi-flip ion-text-end end' ">
+                    </ion-icon>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex" (click)="pickImage('doctor_licence')">
+                    <ion-icon class="zmdi zmdi-assignment-account ion-text-start"></ion-icon>
+                    <h3 *ngIf="documents && documents.doctor_licence && documents.doctor_licence.length">{{'uploaded' | translate}}
+                        <span class="end ion-text-end">{{'reupload' | translate}}</span>
+                    </h3>
+                    <h3 *ngIf="!(documents && documents.doctor_licence && documents.doctor_licence.length)">
+                        {{'doctor_licence' | translate}}
+                        <span class="end ion-text-end">{{'upload' | translate}}</span>
+                    </h3>
+                    <ion-icon [ngClass]="(documents && documents.doctor_licence && documents.doctor_licence.length) ? 'zmdi zmdi-check-circle ion-text-end end' : 'zmdi zmdi-flip ion-text-end end' ">
+                    </ion-icon>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex" (click)="pickImage('medical_council_registration')">
+                    <ion-icon class="zmdi zmdi-hospital ion-text-start"></ion-icon>
+                    <h3 *ngIf="documents && documents.medical_council_reg && documents.medical_council_reg.length">
+                        {{'uploaded' | translate}}
+                        <span class="end ion-text-end">{{'reupload' | translate}}</span>
+                    </h3>
+                    <h3 *ngIf="!(documents && documents.medical_council_reg && documents.medical_council_reg.length)">
+                        {{'medical_council_registration' | translate}}
+                        <span class="end ion-text-end">{{'upload' | translate}}</span>
+                    </h3>
+                    <ion-icon [ngClass]="(documents && documents.medical_council_reg && documents.medical_council_reg.length) ? 'zmdi zmdi-check-circle ion-text-end end' : 'zmdi zmdi-flip ion-text-end end' ">
+                    </ion-icon>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" shape="block" class="btn" (click)="onSubmit()">
+        {{'submit' | translate}}
+    </ion-button>
+</ion-footer>

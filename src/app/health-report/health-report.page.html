@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{ data && toShow.title ? toShow.title : 'attachment_health_report' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="form">
+        <ion-list lines="none">
+            <ion-item *ngIf="!data" lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"title_report" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.title"
+                        placeholder="{{ 'title_enter' | translate}}"></ion-input>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"blood_pressure" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.bloodPressure" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_blood_pressure') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"body_temperature" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.bodyTemperature" [readonly]="data"
+                        placeholder="{{(data ? '': 'enter_body_tempreture') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"oxygen_saturation" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.oxygenSaturation" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_oxygen_saturation') | translate}}">
+                    </ion-input>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"blood_glucose_level" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.glucoseLevel" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_blood_glucose_level') | translate}}">
+                    </ion-input>
+                </div>
+            </ion-item>
+
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item lines="none">
+                        <div class="item_inner">
+                            <ion-label mode="md">{{"weight_in_kg" | translate}}</ion-label>
+                            <ion-input mode="md" type="number" [(ngModel)]="toShow.weight" [readonly]="data"
+                                placeholder="{{ (data ? '': 'enter_weight') | translate}}"></ion-input>
+                        </div>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col size="6">
+                    <ion-item lines="none">
+                        <div class="item_inner">
+                            <ion-label mode="md">{{"height_in_ft" | translate}}</ion-label>
+                            <ion-input mode="md" type="number" [(ngModel)]="toShow.height" [readonly]="data"
+                                placeholder="{{ (data ? '': 'enter_height') | translate}}"></ion-input>
+                        </div>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"allergies" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.allergies" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_allergies') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"medications" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.medications" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_medications') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"procedures" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.procedures" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_procedures') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+            <ion-item lines="none">
+                <div class="item_inner">
+                    <ion-label mode="md">{{"immunisations" | translate}}</ion-label>
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.immunisations" [readonly]="data"
+                        placeholder="{{ (data ? '': 'enter_immunisations') | translate}}"></ion-input>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" expand="full" class="btn" (click)="actionReport()">
+        {{ (data ? 'close' : 'send_report') | translate}}
+    </ion-button>
+</ion-footer>

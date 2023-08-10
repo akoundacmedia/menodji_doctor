@@ -1,0 +1,23 @@
+Required Dependencies:
+    Node: 13.14.0
+    Ionic: 5.4.16
+    Cordova: 9.0.0
+    Gradle: 6.5
+    Jdk: 1.8.0
+
+Running/Building Project:
+    Open application directory in terminal and run following commands
+Installing dependencies:
+    Run command "npm install"
+Running project in browser:
+    Run command "ionic serve"
+Preparing platform:
+    Run command "ionic cordova prepare android"
+Running debug build:
+    Run command "ionic cordova run android --prod"
+Building debug build:
+    Run command "ionic cordova build android --prod"
+Building release app:
+    Configure build.json with your signing key and credentials
+    Now run command "ionic cordova build android --prod --release --buildConfig=build.json"
+    

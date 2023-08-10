@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="title_inner d-flex">
+                <span>{{'appointment_detail' | translate}}</span>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+    <div class="doctor_info d-flex">
+        <div *ngIf="ap.user && ap.user.image_url" class="img_box center_img">
+            <img [src]="ap.user.image_url" class="crop_img">
+        </div>
+        <div *ngIf="!ap.user || !ap.user.image_url" class="img_box center_img">
+            <img src="assets/images/empty_dp.png" class="crop_img">
+        </div>
+        <div class="text_box">
+            <h2>{{ap.user.name}}</h2>
+            <h3>{{ap.date_toshow}} | {{ap.time_from_toshow}}</h3>
+            <div class="btn_box end">
+                <ion-icon [ngClass]="config.agoraVideoConfig.enableAgoraVideo ? 'zmdi zmdi-videocam' : 'zmdi zmdi-phone' " (click)="dialAppointment(ap)"></ion-icon>
+                &nbsp;&nbsp;&nbsp;
+                <ion-icon class="zmdi zmdi-comment-alt-text" (click)="chatAppointment(ap)"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="form">
+        <ion-list lines="none">
+
+            <ion-item>
+                <div class="item_inner">
+                    <h2 class="d-flex"> {{'appointment_number' | translate}}</h2>
+                    <h3>{{ap.id}}</h3>
+                </div>
+            </ion-item>
+
+            <ion-item *ngIf="ap.meta && ap.meta.reason">
+                <div class="item_inner">
+                    <h2 class="d-flex"> {{'appointment_booked_for' | translate}}</h2>
+                    <h3>{{ap.meta.reason}}</h3>
+                </div>
+            </ion-item>
+
+            <ion-item class="attachment" *ngIf="ap.meta && ap.meta.records && ap.meta.records.length">
+                <div class="item_inner">
+                    <h2 class="d-flex"> {{'presc_records' | translate}}</h2>
+                    <h3 class="d-flex" *ngFor="let record of ap.meta.records" (click)="viewRecord(record.url)">
+                        <small>{{record.title}}</small>
+                        <span class="end">
+                            <ion-icon class="zmdi zmdi-eye ion-text-start"></ion-icon>
+                            {{'view' | translate}}
+                        </span>
+                    </h3>
+                </div>
+            </ion-item>
+
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-row *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete')" >
+        <ion-col *ngIf="ap.status == 'pending'" size="6">
+            <ion-button size="large" shape="full" class="btn button-clear" (click)="confirmReject(ap)">
+                <ion-icon slot="start" class="zmdi zmdi-close"></ion-icon>
+                {{'cancel' | translate}}
+            </ion-button>
+        </ion-col>
+
+        <ion-col *ngIf="ap.status == 'pending'" size="6">
+            <ion-button size="large" shape="full" class="btn " (click)="confirmAccept(ap)">
+                <ion-icon slot="start" class="zmdi zmdi-check"></ion-icon>
+                {{'accept' | translate}}
+            </ion-button>
+        </ion-col>
+        <ion-col *ngIf="ap.status != 'pending'" size="12">
+            <ion-button size="large" shape="full" class="btn " (click)="confirmComplete(ap)">
+                <ion-icon slot="start" class="zmdi zmdi-check"></ion-icon>
+                {{'mark_complete' | translate}}
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete')">
+        <ion-col size="12">
+            <ion-button size="large" disabled="true" shape="full" class="btn ">
+                {{ ('ap_status_'+ap.status) | translate}}
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+    <!-- <ion-row>
+        <ion-col size="6">
+            <ion-button size="large" shape="full" class="btn button-clear">
+                <ion-icon slot="start" class="zmdi zmdi-phone"></ion-icon>
+                {{'call' | translate}}
+            </ion-button>
+        </ion-col>
+
+        <ion-col size="6">
+            <ion-button size="large" shape="full" class="btn ">
+                <ion-icon slot="start" class="zmdi zmdi-comment-alt-text"></ion-icon>
+                {{'chat' | translate}}
+            </ion-button>
+        </ion-col> 
+    </ion-row>-->
+</ion-footer>

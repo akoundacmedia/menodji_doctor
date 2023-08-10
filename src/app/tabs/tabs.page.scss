@@ -1,0 +1,100 @@
+ion-tabs {
+    ion-tab-bar {
+        --background: var(--white) !important;
+        box-shadow: 0 4px 41px 10px rgba(0, 0, 0, 0.1);
+        --ripple-color: var(--transparent) !important;
+
+        ion-tab-button {
+            position: relative;
+            --ripple-color: var(--transparent) !important;
+
+            ion-label {
+                color: var(--text-light2);
+                font-size: 0.7rem;
+            }
+
+            .img_box {
+                position: relative;
+                margin: 0 auto;
+                width: 27px;
+                height: 27px;
+            }
+
+            ion-icon {
+                font-size: 1.2rem;
+                text-align: center;
+                color: var(--text-light2);
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                width: 0;
+                height: auto;
+                transition: all 0.3s;
+                width: 24px;
+                transition: all 0.3s;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 0;
+                height: 3px;
+                background: var(--primary);
+                margin: auto;
+                transition: all .3s;
+            }
+
+            &.tab-selected {
+                ion-label {
+                    color: var(--primary);
+                }
+                ion-icon{
+                    color: var(--primary);
+                }
+
+                &::after {
+                    width: 100%;
+                    ;
+                }
+
+                //                img {
+                //                    transition: all 0.3s;
+                //                    filter: invert(60%) sepia(33%) saturate(3275%) hue-rotate(129deg) brightness(96%) contrast(88%); //calculated via https://codepen.io/sosuke/pen/Pjoqqp
+                //                }
+            }
+        }
+    }
+}
+
+.animate__animated {
+	--animate-duration: 0;
+
+	&:nth-child(1) {
+		--animate-duration: 0.2s;
+	}
+
+	&:nth-child(2) {
+		--animate-duration: 0.25s;
+	}
+
+	&:nth-child(3) {
+		--animate-duration: 0.3s;
+	}
+
+	&:nth-child(4) {
+		--animate-duration: 0.4s;
+	}
+
+	&:nth-child(5) {
+		--animate-duration: 0.5s;
+	}
+}

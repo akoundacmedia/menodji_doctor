@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'add_hospital' | translate}}</ion-title>
+    </ion-toolbar>
+    <div class="search_box d-flex animate__animated animate__fadeInUp" style="--animate-duration: .2s;">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" (ionChange)="filterHospitals($event)" placeholder="{{'search_hospital_want_to_add' | translate}}"></ion-searchbar>
+    </div>
+</ion-header>
+
+<ion-content fullscreen class="bg_color">
+    <div class="empty-view" *ngIf="(!toShow || !toShow.length)">
+        <div style="text-align:center">
+            <img src="assets/images/empty_categories.png" alt="no offers" style="display: block; margin: 0 auto;">
+            <ion-spinner *ngIf="isLoading" name="crescent" style="display: block; margin: 0 auto;">
+            </ion-spinner>
+            <span style="color:#9E9E9E; font-weight:bold;">
+                {{ (isLoading ? 'loading' : 'empty_hospitals') | translate}}
+            </span>
+        </div>
+    </div>
+    <div *ngIf="hospitals && hospitals.length">
+        <ion-list lines="none">
+            <h2 class="animate__animated animate__fadeInUp">{{'select_hospoital_to_add' | translate}}</h2>
+            <ion-item class="animate__animated animate__fadeInUp" *ngFor="let hospital of toShow">
+                <div class="item_inner d-flex">
+                    <ion-checkbox [(ngModel)]="hospital.selected"></ion-checkbox>
+                    <div class="text_box">
+                        <h3>{{hospital.name}}</h3>
+                        <h4>{{hospital.tagline}}</h4>
+                        <p>{{hospital.address}}</p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .4s;">
+    <ion-button size="large" shape="full" class="btn" (click)="saveSelection()">
+        {{'save' | translate}}
+    </ion-button>
+</ion-footer>

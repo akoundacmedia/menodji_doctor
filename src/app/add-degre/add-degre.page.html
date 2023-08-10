@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{(scope+'_scope_page_title') | translate}}</ion-title>
+    </ion-toolbar>
+    <div class="search_box d-flex animate__animated animate__fadeInUp" style="--animate-duration: .2s;">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide"
+            placeholder="{{(scope+'_scope_hint_search') | translate}}" (ionChange)="filterCategories($event)">
+        </ion-searchbar>
+    </div>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="empty-view" *ngIf="(!toShow || !toShow.length)">
+        <div style="text-align:center">
+            <img src="assets/images/empty_categories.png" alt="no offers" style="display: block; margin: 0 auto;">
+            <ion-spinner *ngIf="isLoading" name="crescent" style="display: block; margin: 0 auto;">
+            </ion-spinner>
+            <span style="color:#9E9E9E; font-weight:bold;">
+                {{ (isLoading ? 'loading' : 'empty_data') | translate}}
+            </span>
+        </div>
+    </div>
+
+    <ion-list lines="none">
+        <h2>{{(scope+'_scope_selection_message') | translate}}</h2>
+        <ion-item class="animate__animated animate__fadeInUp" *ngFor="let category of toShow">
+            <div class="item_inner d-flex">
+                <ion-checkbox [(ngModel)]="category.selected"></ion-checkbox>
+                <h3>{{category.title}}</h3>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .4s;">
+    <ion-button size="large" shape="full" class="btn" (click)="saveSelection()">
+        {{'save' | translate}}
+    </ion-button>
+</ion-footer>

@@ -1,0 +1,240 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="d-flex">
+                <span class="center_title"></span>
+                <ion-icon *ngIf="fresh_profile" class="zmdi zmdi-sign-in end" (click)="exitApp()"></ion-icon>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+    <!--
+    <div class="banner">
+        <div class="banner_img">
+            <img *ngIf="profile && profile.image_urls && profile.image_urls.length" [src]="profile.image_urls[0]">
+            <img *ngIf="!profile || !profile.image_urls || !profile.image_urls.length" src="assets/images/empty_hospitals.png" class="crop_img">
+        </div>
+        <div class="banner_details">
+            <div class="doctor_details d-flex">
+                <div class="img_box center_img">
+                    <img *ngIf="profile.user.image_url && profile.user.image_url.length" [src]="profile.user.image_url" class="crop_img">
+                    <img *ngIf="!profile.user.image_url || !profile.user.image_url.length" src="assets/images/empty_doctors.png" class="crop_img">
+                </div>
+                <div class="text_box">
+                    <h2 class="d-flex" (click)="pickImage(1)">
+                        <ion-icon class="zmdi zmdi-camera"></ion-icon>
+                        {{'change_cover_image' | translate}}
+                    </h2>
+                    <h2 class="d-flex profile_image" (click)="pickImage(2)">
+                        <ion-icon class="zmdi zmdi-camera"></ion-icon>
+                        {{'change_profile_image' | translate}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+
+    <div class="banner">
+        <div class="doctor_details d-flex">
+            <div class="img_box center_img">
+                <img *ngIf="profile.user.image_url && profile.user.image_url.length" [src]="profile.user.image_url" class="crop_img">
+                <img *ngIf="!profile.user.image_url || !profile.user.image_url.length" src="assets/images/empty_dp.png" class="crop_img">
+            </div>
+            <div class="text_box" (click)="pickImage(2)">
+                <h3>
+                    <ion-icon class="zmdi zmdi-camera"></ion-icon>
+                    {{'change_profile_image' | translate}}
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <ion-list lines="none">
+        <ion-card>
+            <div class="form">
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi zmdi-account ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'profile_name' | translate}}" type="text" [(ngModel)]="profile.name">
+                        </ion-input>
+                    </div>
+                </ion-item>
+
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi zmdi-smartphone-iphone ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'phone_number' | translate}}" disabled="true" readonly [(ngModel)]="profile.user.mobile_number">
+                        </ion-input>
+                    </div>
+                </ion-item>
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi zmdi-email ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'email_address' | translate}}" disabled="true" [(ngModel)]="profile.user.email" readonly>
+                        </ion-input>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-card>
+
+        <ion-card class="select_hospital animate__animated animate__fadeInUp">
+            <h2>{{'services_at' | translate}}</h2>
+            <div class="form" (click)="navHospitals()">
+                <ion-item class="animate__animated animate__fadeInUp d-flex" lines="none" style="align-items:  center !important">
+                    <h3 *ngIf="profile.hospitals && profile.hospitals.length">
+                        {{hospitals_text}}
+                    </h3>
+                    <h3 *ngIf="!profile.hospitals || !profile.hospitals.length">
+                        {{'select_hospital' | translate}}
+                    </h3>
+                </ion-item>
+            </div>
+        </ion-card>
+
+        <ion-card class="experience_fees animate__animated animate__fadeInUp">
+            <h2>{{'experience_fees' | translate}}</h2>
+            <div class="form">
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi zmdi-case-check ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'experience_years' | translate}}" type="number" [(ngModel)]="profile.experience_years"></ion-input>
+                    </div>
+                </ion-item>
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi  zmdi-balance-wallet ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'consultancy_fees' | translate}}" type="number" [(ngModel)]="profile.fee"></ion-input>
+                    </div>
+                </ion-item>
+                <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi  zmdi-balance-wallet ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'consultancy_fees_online' | translate}}" type="number" [(ngModel)]="profile.meta.fee_online"></ion-input>
+                    </div>
+                </ion-item>
+                <!-- <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                    <div class="ite_inner d-flex">
+                        <ion-icon class="zmdi  zmdi-balance-wallet ion-text-start"></ion-icon>
+                        <ion-input placeholder="{{'consultancy_fees_online' | translate}}" type="number" [(ngModel)]="profile.meta.fee_online"></ion-input>
+                    </div>
+                </ion-item> -->
+            </div>
+        </ion-card>
+
+        <ion-card class="profile_about animate__animated animate__fadeInUp">
+            <h2>{{'profile_about' | translate}}</h2>
+            <div class="form">
+                <ion-item lines="none">
+                    <div class="ite_inner d-flex">
+                        <!-- <ion-icon class="zmdi zmdi-info ion-text-start"></ion-icon> -->
+                        <ion-textarea [(ngModel)]="profile.details" maxlength="500" rows="5"  placeholder="{{'profile_about_describe' | translate}}"></ion-textarea>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-card>
+
+        <ion-card class="services animate__animated animate__fadeInUp">
+            <h2 class="d-flex">
+                {{'degrees' | translate}}
+                <span class="end" (click)="navCatSelection('degree')">
+                    {{ ((profile.degrees && profile.degrees.length)?'edit':'add') | translate}}
+                </span>
+            </h2>
+            <div class="text_box animate__animated animate__fadeInUp" *ngFor="let category of profile.degrees">
+                <h3 class="d-flex">
+                    {{category.title}}
+                </h3>
+            </div>
+            <!-- <h5>+ 1 {{'more' | translate}}</h5> -->
+        </ion-card>
+
+        <ion-card class="services animate__animated animate__fadeInUp">
+            <h2 class="d-flex">
+                {{'services' | translate}}
+                <span class="end" (click)="navCatSelection('services')">
+                    {{ ((profile.services && profile.services.length)?'edit':'add') | translate}}
+                </span>
+            </h2>
+            <div class="text_box animate__animated animate__fadeInUp" *ngFor="let category of profile.services">
+                <h3 class="d-flex">
+                    {{category.title}}
+                </h3>
+            </div>
+            <!-- <h5>+ 1 {{'more' | translate}}</h5> -->
+        </ion-card>
+
+        <ion-card class="services animate__animated animate__fadeInUp">
+            <h2 class="d-flex">
+                {{'specialization' | translate}}
+                <span class="end" (click)="navCatSelection('specializations')">
+                    {{ ((profile.specializations && profile.specializations.length)?'edit':'add') | translate}}
+                </span>
+            </h2>
+            <div class="text_box animate__animated animate__fadeInUp" *ngFor="let category of profile.specializations">
+                <h3 class="d-flex">
+                    {{category.title}}
+                </h3>
+            </div>
+            <!-- <h5>+ 1 {{'more' | translate}}</h5> -->
+        </ion-card>
+
+        <ion-card class="services animate__animated animate__fadeInUp">
+            <h2 class="d-flex animate__animated animate__fadeInUp">
+                {{'service_type' | translate}}
+                <span class="end" (click)="navCatSelection('type')">
+                    {{ ((profile.types && profile.types.length)?'edit':'add') | translate}}
+                </span>
+            </h2>
+            <div class="text_box animate__animated animate__fadeInUp" *ngFor="let category of profile.types">
+                <h3 class="d-flex">
+                    {{category.title}}
+                </h3>
+            </div>
+            <!-- <h5>+ 5 {{'more' | translate}}</h5> -->
+        </ion-card>
+
+        <ion-card class="availibilty animate__animated animate__fadeInUp">
+            <h2 class="d-flex">{{'availibilty' | translate}}</h2>
+            <ion-row class="animate__animated animate__fadeInUp" *ngFor="let avail of profile.availability">
+                <ion-col size="4">
+                    <div class="day d-flex">
+                        <ion-item lines="none">
+                            <div class="item_inner d-flex">
+                                <ion-checkbox [(ngModel)]="avail.selected"></ion-checkbox>
+                                <h3>{{avail.days | translate}}</h3>
+                            </div>
+                        </ion-item>
+                    </div>
+                </ion-col>
+                <ion-col size="8">
+                    <div class="time_box d-flex">
+                        <div class="time d-flex">
+                            <ion-datetime displayFormat="HH:mm" mode="md" [disabled]="!avail.selected" value="12:00" [(ngModel)]="avail.dateFromISO">
+                            </ion-datetime>
+                            <ion-icon class="zmdi zmdi-caret-down end ion-text-end"></ion-icon>
+                        </div>
+                        <h4>{{'to' | translate}}</h4>
+                        <div class="time d-flex">
+                            <ion-datetime displayFormat="HH:mm" mode="md" [disabled]="!avail.selected" value="12:00" [(ngModel)]="avail.dateToISO">
+                            </ion-datetime>
+                            <ion-icon class="zmdi zmdi-caret-down end ion-text-end"></ion-icon>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .4s;">
+    <ion-button size="large" shape="full" class="btn" (click)="saveProfile()">
+        {{'save' | translate}}
+    </ion-button>
+</ion-footer>

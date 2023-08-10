@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'register_now' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="form">
+        <p class="ion-text-center animate__animated animate__fadeInUp">{{'register_now_message' | translate}} <br>{{'register_now_message2' | translate}}
+        </p>
+
+        <ion-list lines="none">
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                <div class="ite_inner d-flex">
+                    <ion-icon class="zmdi zmdi-globe-alt ion-text-start"></ion-icon>
+                    <ion-select mode="md" [(ngModel)]="countryCode" multiple="false" [value]="countryCode"
+                        placeholder="{{'select_country' | translate}}" [okText]="'okay' | translate"
+                        [cancelText]="'cancel' | translate" (ionChange)="changeHint()"
+                        [selectedText]="countryCodeCountryText">
+                        <ion-select-option *ngFor="let country of countries" [value]="country.callingCodes[0]">
+                            {{country.name}}
+                        </ion-select-option>
+                    </ion-select>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                <div class="ite_inner d-flex">
+                    <ion-icon class="zmdi  zmdi-smartphone-iphone ion-text-start"></ion-icon>
+                    <ion-input mode="md" type="tel" placeholder="{{phoneNumberHint}}" [(ngModel)]="phoneNumber">
+                    </ion-input>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                <div class="ite_inner d-flex">
+                    <ion-icon class="zmdi zmdi-account ion-text-start"></ion-icon>
+                    <ion-input mode="md" type="text" placeholder="{{'full_name' | translate}}"
+                        [(ngModel)]="signUpRequest.name"></ion-input>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInUp" lines="none">
+                <div class="ite_inner d-flex">
+                    <ion-icon class="zmdi zmdi-email ion-text-start"></ion-icon>
+                    <ion-input type="email" [(ngModel)]="signUpRequest.email"
+                        placeholder="{{'email_address' | translate}}"></ion-input>
+                </div>
+            </ion-item>
+            <ion-button size="large" shape="block" class="btn animate__animated animate__fadeInUp" (click)="requestSignUp()">
+                {{'continue' | translate}}
+            </ion-button>
+        </ion-list>
+        <h4 class="ion-text-center animate__animated animate__fadeInUp" style="--animate-duration: .3s;" (click)="goBack()">
+            {{'back_to_sign_in' | translate}}
+        </h4>
+        <div class="form animate__animated animate__fadeInUp" style="--animate-duration: .35s;">
+            <p class="ion-text-center">{{'will_send_an_otp_on_above' | translate}}
+                <br>{{'given_phone_number' | translate}}
+            </p>
+        </div>
+    </div>
+
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+	<div class="form">
+		<p class="ion-text-center">{{'will_send_an_otp_on_above' | translate}} <br>{{'given_phone_number' | translate}}
+		</p>
+	</div>
+</ion-footer> -->

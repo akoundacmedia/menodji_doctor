@@ -1,0 +1,49 @@
+.form {
+    width: 100%;
+    margin-top: 8px;
+
+    ion-list {
+        padding: 0 20px;
+
+        ion-row {
+            margin: 0 -10px;
+
+            ion-col {
+                padding: 0 10px;
+            }
+        }
+
+        ion-item {
+            margin-bottom: 0px;
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            margin-bottom: 20px;
+
+            .item_inner {
+                width: 100%;
+            }
+
+            ion-label {
+                font-weight: 400;
+                font-size: 0.98rem !important;
+                margin-bottom: 0 !important;
+                letter-spacing: 0px !important;
+                color: var(--text-light2) !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                transition: unset;
+                transform: unset;
+            }
+
+            ion-input {
+                background: var(--info_field_bg);
+                border-radius: 4px;
+                padding: 2px 16px !important;
+                min-height: 50px;
+                color: var(--text-dark);
+                font-size: 0.99rem !important;
+            }
+        }
+    }
+}

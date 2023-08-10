@@ -1,0 +1,101 @@
+ion-header ion-toolbar ion-title {
+    min-height: 60px;
+    .title_inner {
+        position: relative;
+        min-height: 60px;
+        .center_title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            max-width: calc(100% - 77px);
+            margin: 0 auto;
+        }
+        ion-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+            min-width: 35px px;
+        }
+    }
+}
+
+.banner {
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 30px;
+    img {
+        width: 220px;
+        display: block;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+    h2 {
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 600;
+        font-size: 1.2rem;
+        padding-bottom: 40px;
+    }
+    p {
+        color: var(--text-light) !important;
+        font-size: 1rem !important;
+        letter-spacing: 0;
+        font-weight: 500;
+        width: 310px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+}
+
+.form {
+    ion-list {
+        ion-item {
+            ion-input {
+                //                --placeholder-font-weight: 400 !important;
+            }
+            ion-icon {
+                &.zmdi-check-circle {
+                    color: var(--text-dark) !important;
+                }
+                &.zmdi-flip {
+                    transform: rotate(88deg);
+                    position: relative;
+                    top: -6px;
+                    right: -4px;
+                }
+            }
+            .item_inner {
+                min-height: 49px;
+                h3 {
+                    margin: 0;
+                    font-size: 1.1rem !important;
+                    font-weight: 500 !important;
+                    color: var(--text-light) !important;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    span {
+                        color: var(--primary);
+                    }
+                }
+                h4 {
+                    margin: 0;
+                    font-size: 1.1rem !important;
+                    font-weight: 500 !important;
+                    color: var(--text-black) !important;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+ion-footer {
+    padding: 20px;
+    background: var(--white);
+}

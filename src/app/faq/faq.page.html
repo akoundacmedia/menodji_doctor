@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'faqs' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+	<ion-list lines="none">
+		<ion-item class="animate__animated animate__fadeInUp" *ngFor="let faq of faqs" [ngClass]="faq.id == curFaqId ? 'active' : '' " (click)="expandFaq(faq)">
+			<div class="item_inner">
+				<h2>{{faq.title}}</h2>
+				<div class="text_box">
+					<p *ngIf="faq.id != curFaqId">{{faq.short_description}}</p>
+					<p *ngIf="faq.id == curFaqId">{{faq.description}}</p>
+				</div>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

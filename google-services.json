@@ -1,0 +1,39 @@
+{
+    "project_info": {
+      "project_number": "1001058491339",
+      "project_id": "menodji-aa65f",
+      "storage_bucket": "menodji-aa65f.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1001058491339:android:cc66a3d5965242c0d6744e",
+          "android_client_info": {
+            "package_name": "com.menodji.app.pro"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "1001058491339-ocd102mgeqp5amuj3ot732rrsc3j77dv.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyApsCSPufl3mZZfIWz2lKz7cowfbnGoSBY"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "1001058491339-ocd102mgeqp5amuj3ot732rrsc3j77dv.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

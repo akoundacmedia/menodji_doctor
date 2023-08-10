@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            {{'my_appointments' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div class="empty-view" *ngIf="(!appointments || !appointments.length)">
+        <div style="text-align:center">
+            <img src="assets/images/empty_appointments.png" alt="no offers" style="display: block; margin: 0 auto;">
+            <ion-spinner *ngIf="isLoading" name="crescent" style="display: block; margin: 0 auto;">
+            </ion-spinner>
+            <span style="color:#9E9E9E; font-weight:bold;">
+                {{ (isLoading ? 'loading' : 'empty_appointments') | translate}}
+            </span>
+        </div>
+    </div>
+    <ion-list lines="none">
+        <div *ngFor="let ap of appointments">
+            <h2 *ngIf="0 > ap.id">{{ap.type | translate}}</h2>
+            <ion-item *ngIf="ap.id > 0" [ngClass]="optionsAppointment == ap.id ? 'show_options' : ''">
+                <div class="item_inner d-flex">
+                    <div class="img_box center_img" (click)="navAppointmentDetail(ap)">
+                        <img *ngIf="ap.user && ap.user.image_url" [src]="ap.user.image_url" class="crop_img">
+                        <img *ngIf="!ap.user || !ap.user.image_url" src="assets/images/empty_dp.png" class="crop_img">
+                    </div>
+                    <div class="text_box">
+                        <div class="d-flex" style="padding-bottom: 10px;">
+                            <div class="" style="width: 100%;">
+                                <h2 class="d-flex">
+                                    {{ap.user.name}}
+                                    <!-- <ion-icon *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete') && optionsAppointment != ap.id" class="zmdi zmdi-more-vert ion-text-end end" (click)="showOptions(ap)"></ion-icon> -->
+                                    <!-- <ion-icon *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete') && optionsAppointment == ap.id" class="zmdi zmdi-close ion-text-end end" (click)="showOptions(ap)"></ion-icon> -->
+                                    <!-- <span *ngIf="ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete'" class="status end">
+                                        {{ ('ap_status_'+ap.status) | translate}}
+                                    </span> -->
+                                    <span *ngIf="ap.status != 'pending'" class="status end">
+                                        {{ ('ap_status_'+ap.status) | translate}}
+                                    </span>
+                                </h2>
+                                <h3 *ngIf="ap.meta && ap.meta.reason" (click)="navAppointmentDetail(ap)">
+                                    {{ap.meta.reason}}</h3>
+                            </div>
+
+                            <div *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete')"
+                                class="btn_box end">
+                                <ion-icon *ngIf="ap.status == 'pending'" class="zmdi zmdi-close"
+                                    (click)="confirmReject(ap)"></ion-icon>
+                                &nbsp;&nbsp;&nbsp;
+                                <ion-icon *ngIf="ap.status == 'pending'" class="zmdi zmdi-check"
+                                    (click)="confirmAccept(ap)"></ion-icon>
+                            </div>
+                        </div>
+
+
+                        <h4 class="d-flex">
+                            {{ap.date_toshow}} | {{ap.time_from_toshow}}
+
+                            <span class="end"
+                                *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete')">
+                                <ion-icon
+                                    [ngClass]="config.agoraVideoConfig.enableAgoraVideo ? 'zmdi zmdi-videocam' : 'zmdi zmdi-phone' "
+                                    (click)="dialAppointment(ap)"></ion-icon>
+                                &nbsp;&nbsp;&nbsp;
+                                <ion-icon   [ngClass]="unRedAppointmentIds.includes(ap.id) ? 'zmdi zmdi-comment-alt-text active' : 'zmdi zmdi-comment-alt-text' " (click)="chatAppointment(ap)">
+                                </ion-icon>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="option_container">
+                    <div *ngIf="ap.status == 'pending'" class="option" (click)="confirmAccept(ap)">
+                        <h2 class="ion-text-end">{{'accept' | translate}}</h2>
+                    </div>
+                    <div *ngIf="ap.status == 'pending'" class="option" (click)="confirmReject(ap)">
+                        <h2 class="ion-text-end">{{'reject' | translate}}</h2>
+                    </div>
+                    <div *ngIf="ap.status != 'pending'" class="option" (click)="confirmComplete(ap)">
+                        <h2 class="ion-text-end">{{'mark_complete' | translate}}</h2>
+                    </div>
+                </div>
+            </ion-item>
+        </div>
+
+        <ion-infinite-scroll (ionInfinite)="doInfiniteAppointments($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'loading' | translate}}">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+        <!-- <ion-item *ngFor="let ap of appointmentsPast" [ngClass]="optionsAppointment == ap.id ? 'show_options' : ''">
+            <div class="item_inner d-flex">
+                <div class="img_box center_img">
+                    <img *ngIf="ap.user && ap.user.image_url" [src]="ap.user.image_url" class="crop_img">
+                    <img *ngIf="!ap.user || !ap.user.image_url" src="assets/images/empty_dp.png" class="crop_img">
+                </div>
+
+                <div class="text_box">
+                    <h2 class="d-flex">{{ap.user.name}}
+                        <ion-icon
+                            *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete') && optionsAppointment != ap.id"
+                            class="zmdi zmdi-more-vert ion-text-end end" (click)="showOptions(ap)"></ion-icon>
+                        <ion-icon
+                            *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete') && optionsAppointment == ap.id"
+                            class="zmdi zmdi-close ion-text-end end" (click)="showOptions(ap)"></ion-icon>
+                        <span *ngIf="ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete'"
+                            class="status end">
+                            {{ ('ap_status_'+ap.status) | translate}}
+                        </span>
+                    </h2>
+                    <h3 *ngIf="ap.meta && ap.meta.reason">{{ap.meta.reason}}</h3>
+
+                    <h4 class="d-flex">
+                        {{ap.date_toshow}} | {{ap.time_from_toshow}}
+
+                        <span class="end"
+                            *ngIf="!(ap.status == 'cancelled' || ap.status == 'rejected' || ap.status == 'complete')">
+                            <ion-icon
+                                [ngClass]="config.agoraVideoConfig.enableAgoraVideo ? 'zmdi zmdi-videocam ion-text-start' : 'zmdi zmdi-phone ion-text-start' "
+                                (click)="dialAppointment(ap)"></ion-icon>
+                            <ion-icon class="zmdi zmdi-comment-alt-text ion-text-end" (click)="chatAppointment(ap)">
+                            </ion-icon>
+                        </span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="option_container">
+                <div *ngIf="ap.status == 'pending'" class="option" (click)="confirmAccept(ap)">
+                    <h2 class="ion-text-end">{{'accept' | translate}}</h2>
+                </div>
+                <div *ngIf="ap.status == 'pending'" class="option" (click)="confirmReject(ap)">
+                    <h2 class="ion-text-end">{{'reject' | translate}}</h2>
+                </div>
+                <div *ngIf="ap.status != 'pending'" class="option" (click)="confirmComplete(ap)">
+                    <h2 class="ion-text-end">{{'mark_complete' | translate}}</h2>
+                </div>
+            </div>
+        </ion-item> -->
+    </ion-list>
+</ion-content>

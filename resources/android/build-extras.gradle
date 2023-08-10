@@ -1,0 +1,11 @@
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
+// configurations { 
+//     compile.exclude group: 'com.google.zxing'
+// }
+dependencies {
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+}

@@ -1,0 +1,85 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+            </ion-buttons>
+            <ion-title>{{'add_medicine' | translate}}</ion-title>
+        </ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="form">
+        <ion-list lines="none">
+            <ion-card>
+                <h2>{{'pill_name' | translate}}</h2>
+                <ion-item lines="none">
+                    <ion-input class="ion-text-start" [(ngModel)]="isShow.pill_name" placeholder="{{'enter_pill_name' | translate}}">
+                    </ion-input>
+                </ion-item>
+            </ion-card>
+
+            <ion-card>
+                <h2>{{'select_days' | translate}}</h2>
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <ion-icon class="zmdi zmdi-calendar-alt ion-text-start"></ion-icon>
+                        <ion-label>{{'select_days' | translate}}</ion-label>
+                        <ion-select mode="md" [(ngModel)]="isShow.days" placeholder="{{'select_pill_days' | translate}}" multiple="false" multiple="true" [okText]="'okay' | translate" [cancelText]="'cancel' | translate">
+                            <ion-select-option value="mon">{{'mon' | translate}}</ion-select-option>
+                            <ion-select-option value="tue">{{'tue' | translate}}</ion-select-option>
+                            <ion-select-option value="wed">{{'wed' | translate}}</ion-select-option>
+                            <ion-select-option value="thu">{{'thu' | translate}}</ion-select-option>
+                            <ion-select-option value="fri">{{'fri' | translate}}</ion-select-option>
+                            <ion-select-option value="sat">{{'sat' | translate}}</ion-select-option>
+                            <ion-select-option value="sun">{{'sun' | translate}}</ion-select-option>
+                        </ion-select>
+                    </div>
+                </ion-item>
+            </ion-card>
+
+            <ion-card>
+                <h2>{{'select_time' | translate}}</h2>
+
+                <div class="d-flex" style="align-items: flex-start">
+                    <div class="item_box">
+                        <ion-item lines="none" *ngFor="let time of isShow.times; let i = index;">
+                            <div class="item_inner d-flex">
+                                <ion-icon class="zmdi zmdi-notifications ion-text-start"></ion-icon>
+                                <ion-datetime displayFormat="HH:mm" [(ngModel)]="isShow.times[i].value" placeholder="{{'select_pill_time' | translate}}">
+                                </ion-datetime>
+                            </div>
+                        </ion-item>
+
+                        <!-- <ion-item lines="none">
+                            <div class="item_inner d-flex">
+                                <ion-icon class="zmdi zmdi-notifications ion-text-start"></ion-icon>
+                                <ion-datetime mode="ios" displayFormat="HH:mm" placeholder="{{'select_pill_time' | translate}}">
+                                </ion-datetime>
+                            </div>
+                        </ion-item> -->
+                    </div>
+                    <div class="add_time_box end" (click)="addTime()">
+                        <span>+</span>
+                    </div>
+                </div>
+            </ion-card>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-row>
+        <ion-col size="6">
+            <ion-button size="large" shape="full" class="btn danger" (click)="close()">
+                {{'close' | translate}}
+            </ion-button>
+        </ion-col>
+        <ion-col size="6">
+            <ion-button size="large" shape="full" class="btn" (click)="addMedicine()">
+                {{'add_medicine' | translate}}
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

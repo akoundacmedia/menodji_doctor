@@ -1,0 +1,235 @@
+.banner {
+    background: var(--white);
+    padding: 10px 18px 0px 18px;
+
+    .doctor_details {
+        width: 100%;
+        align-items: flex-end;
+
+        .img_box {
+            width: 100%;
+            max-width: 150px;
+            min-width: 150px;
+            height: 150px;
+            border-radius: 11px;
+            margin-right: 20px;
+        }
+
+        .text_box {
+            h3 {
+                margin: 0;
+                color: var(--primary);
+                font-size: 0.94rem;
+                font-weight: 400;
+                padding-bottom: 10px;
+
+                ion-icon {
+                    display: block;
+                    background: var(--primary);
+                    color: var(--white);
+                    border-radius: 50%;
+                    min-width: 28px;
+                    text-align: center;
+                    height: 28px;
+                    line-height: 28px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}
+
+ion-list {
+    padding: 0;
+    background: var(--transparent) !important;
+    margin: 0;
+    padding: 0;
+
+    ion-card {
+        margin: 0;
+        width: 100%;
+        margin-bottom: 8px;
+        border-radius: 0;
+        padding: 18px;
+        box-shadow: none;
+
+        h2 {
+            margin: 0;
+            color: var(--text-light2);
+            font-size: 0.94rem;
+            font-weight: 400;
+            letter-spacing: 0;
+            padding-bottom: 15px;
+
+            span {
+                color: var(--primary);
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+        }
+
+        .form {
+            width: 100%;
+            //            padding-top: 14px;
+
+            ion-item {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &.experience_fees,
+        &.select_hospital {
+            .form {
+                padding-top: 0px;
+
+                ion-item {
+                    h3 {
+                        margin: 0;
+                        font-size: 1.1rem !important;
+                        font-weight: 500 !important;
+                        color: var(--text-black);
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+
+        &.services {
+            .text_box {
+                padding-bottom: 7px;
+
+                h3 {
+                    margin: 0;
+                    color: var(--text-dark);
+                    font-size: 1rem;
+                    letter-spacing: 0;
+                }
+            }
+
+            h5 {
+                margin: 0;
+                color: var(--primary);
+                font-size: 0.95rem;
+                text-transform: lowercase;
+                padding-top: 8px;
+            }
+
+            &.active {
+                .text_container {
+                    height: auto;
+                }
+
+                h3 {
+                    &.see_more {
+                        span {
+                            &:nth-child(odd) {
+                                display: block;
+                            }
+
+                            &:nth-child(even) {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.profile_about {
+            .form {
+                ion-item {
+                    .ite_inner {
+                        align-items: flex-start;
+                        padding: 14px 0;
+
+                        ion-textarea {
+                            margin: 0 !important;
+                            --padding-top: 0 !important;
+                            --padding-bottom: 0 !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.availibilty {
+            ion-row {
+                align-items: center;
+
+                ion-col {
+                    padding: 0;
+                    padding-bottom: 10px;
+
+                    .day {
+                        ion-item {
+                            min-height: unset !important;
+                            box-shadow: none !important;
+                            --background: var(--transparent);
+                            --inner-padding-end: 0px;
+                            --inner-min-height: unset !important;
+                            --min-height: unset !important;
+                            --padding-start: 0;
+                            --ripple-color: var(--transparent);
+
+                            ion-checkbox {
+                                margin: 0;
+                                margin-right: 14px;
+                                --background-checked: var(--primary);
+                                --border-color-checked: var(--primary);
+                                --size: 17px;
+                            }
+
+                            h3 {
+                                margin: 0;
+                                color: var(--text-light);
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+
+                    .time_box {
+                        width: 100%;
+                        overflow: hidden;
+
+                        .time {
+                            border-radius: 6px;
+                            padding: 2px 7px;
+                            width: calc(100% - 0px);
+                            background: var(--bg-color);
+                            min-height: 40px;
+                            background: var(--info_field_bg);
+
+                            ion-datetime {
+                                --padding-end: 0;
+                                --padding-bottom: 0;
+                                --padding-start: 0;
+                                --padding-top: 0;
+                                font-size: 1.1rem !important;
+                                font-weight: 500 !important;
+                                color: var(--text-black);
+                            }
+
+                            ion-icon {
+                                color: var(--text-black);
+                                font-size: 1.5rem;
+                                min-width: 20px;
+                            }
+                        }
+
+                        h4 {
+                            margin: 0;
+                            color: var(--text-light);
+                            font-size: 1rem;
+                            min-width: 36px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

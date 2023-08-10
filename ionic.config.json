@@ -1,0 +1,7 @@
+{
+  "name": "doctoworld_doctor",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

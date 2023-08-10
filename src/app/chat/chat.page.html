@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <div class="toolbar_inner d-flex">
+            <ion-buttons slot="start">
+                <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+            </ion-buttons>
+
+            <div class="d-flex user_details animate__animated animate__fadeInUp" style="--animate-duration: .2s;">
+                <div class="img_box center_img">
+                    <img [src]="chat.chatImage" class="crop_img">
+                </div>
+                <div class="text_box">
+                    <h2>{{chat.chatName}}</h2>
+                    <h3>{{chat.chatStatus}}</h3>
+                </div>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content #content fullscreen class="bg_color">
+    <div class="chat_container d-flex">
+        <div *ngFor="let msg of messages" [ngClass]="(chat.myId == msg.senderId) ? 'chat_box d-flex animate__animated animate__zoomIn send' : 'chat_box d-flex animate__animated animate__zoomIn  received'">
+            <div class="chat">
+                <h2>{{msg.body}}</h2>
+                <p>{{msg.timeDiff}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_img animate__animated animate__fadeInUp" style="--animate-duration: .4s;">
+        <img src="assets/images/chat_footer_img.png">
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border animate__animated animate__fadeInUp" style="--animate-duration: .4s;">
+    <div class="form">
+        <ion-list lines="none d-flex">
+            <ion-item lines="none">
+                <ion-textarea rows="1" auto-grow="true" [(ngModel)]="newMessageText" placeholder="{{'write_your_message' | translate}}">
+                </ion-textarea>
+            </ion-item>
+            <div class="send_btn end" (click)="send()">
+                <ion-icon class="zmdi zmdi-mail-send"></ion-icon>
+            </div>
+        </ion-list>
+    </div>
+</ion-footer>

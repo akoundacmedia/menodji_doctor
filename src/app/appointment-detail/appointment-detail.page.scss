@@ -1,0 +1,174 @@
+ion-header ion-toolbar ion-title {
+    .title_inner {
+        position: relative;
+        min-height: 60px;
+    }
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: fit-content;
+    }
+    ion-icon {
+        color: var(--primary);
+        font-size: 1.4rem;
+        padding: 0 1px;
+        min-width: 20px;
+    }
+}
+
+.doctor_info {
+    padding: 18px;
+    align-items: flex-start;
+    padding-bottom: 36px;
+    .img_box {
+        width: 100%;
+        max-width: 150px;
+        height: 150px;
+        border-radius: 11px;
+        margin-right: 18px;
+        min-width: 150px;
+    }
+    .text_box {
+        position: relative;
+        min-height: 150px;
+        padding-bottom: 40px;
+        h2 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.53rem;
+            font-weight: 600;
+            line-height: 31px;
+            padding-bottom: 10px;
+        }
+        h3 {
+            margin: 0;
+            color: var(--text-light2);
+            font-size: 0.94rem;
+            font-weight: 400;
+            padding-bottom: 7px;
+        }
+        .btn_box {
+            display: flex;
+            align-items: center;
+            min-width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            ion-icon {
+                text-align: center;
+                background: var(--primary);
+                color: var(--white);
+                min-width: 36px;
+                height: 36px;
+                line-height: 36px;
+                border-radius: 9px;
+                font-size: 1.2rem;
+                &.zmdi-phone {
+                    position: relative;
+                    overflow: hidden;
+                    background: var(--bg-color);
+                    color: var(--primary);
+                }
+                &.zmdi-videocam {
+                    position: relative;
+                    overflow: hidden;
+                    background: var(--bg-color);
+                    color: var(--primary);
+                }
+            }
+        }
+    }
+}
+
+.form {
+    width: 100%;
+    ion-list {
+        ion-item {
+            background: none;
+            border-radius: 0;
+            padding: 0 20px;
+            margin-bottom: 33px;
+            .item_inner {
+                width: 100%;
+                h2 {
+                    margin: 0;
+                    color: var(--text-light2);
+                    font-size: 0.94rem;
+                    font-weight: 400;
+                    letter-spacing: 0;
+                    padding-bottom: 8px;
+                    span {
+                        color: var(--primary);
+                    }
+                }
+                h3 {
+                    margin: 0;
+                    color: var(--text-dark);
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                }
+                h4 {
+                    margin: 0;
+                    color: var(--text-light2);
+                    font-weight: 400;
+                    font-size: 0.93rem;
+                    padding-top: 6px;
+                }
+            }
+            &.attachment {
+                .item_inner {
+                    h3 {
+                        small {
+                            color: var(--text-dark);
+                            font-size: 1.3rem;
+                            font-weight: 500;
+                            max-width: 66%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        span {
+                            min-width: fit-content;
+                            display: flex;
+                            align-items: center;
+                            font-size: 1rem;
+                            color: var(--primary);
+                            ion-icon {
+                                display: flex;
+                                align-items: center;
+                                color: var(--primary);
+                                min-width: 22px;
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+ion-footer {
+    background: var(--bg-color);
+    ion-row {
+        ion-col {
+            padding: 0;
+            .button.btn {
+                ion-icon {
+                    position: relative;
+                    left: -18px;
+                    font-size: 1.3rem;
+                }
+                &.button-clear {
+                    --background: none;
+                    color: var(--primary);
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

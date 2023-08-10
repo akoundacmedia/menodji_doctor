@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar>
+        <!-- <ion-buttons slot="start" (click)="close()">
+            <ion-icon class="zmdi zmdi-close"></ion-icon>
+        </ion-buttons> -->
+        <ion-title>
+            {{ data && toShow.title ? toShow.title : 'send_prescription' | translate}}
+        </ion-title>
+    </ion-toolbar>
+    <div class="customer_detail d-flex">
+        <div class="img_box center_img">
+            <img [src]="chat.chatImage" class="crop_img">
+        </div>
+        <div class="text_box">
+            <h2 class="d-flex">
+                {{chat.chatName}}
+            </h2>
+            <!-- <h3>Chest Pain</h3> -->
+
+            <h4 class="d-flex">
+                {{chat.chatStatus}}
+            </h4>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content class="bg_color">
+    <div class="form">
+        <ion-list lines="none" class="prescribe_medicines">
+            <h2 *ngIf="!toShow.is_view">{{'title_prescription' | translate}}</h2>
+            <ion-item *ngIf="!toShow.is_view" lines="none">
+                <div class="item_inner">
+                    <ion-input mode="md" type="text" [(ngModel)]="toShow.title"
+                        placeholder="{{ 'title_enter' | translate}}"></ion-input>
+                </div>
+            </ion-item>
+
+            <h2>{{'prescribe_medicines' | translate}}</h2>
+
+            <ion-item *ngFor="let medicine of toShow.medicines">
+                <div class="item_inner d-flex">
+                    <div class="icon_box">
+                        <img src="assets/images/ic_medicineact.png">
+                    </div>
+                    <div class="text_box">
+                        <h2 class="d-flex">
+                            {{medicine.pill_name}}
+                        </h2>
+                        <h3>
+                            <span *ngFor="let day of medicine.days; let i = index">
+                                {{day | translate}}{{i==medicine.days.length-1 ? '.' : ',  '}}
+                            </span>
+                         </h3>
+
+                        <h4 class="d-flex">
+                            <span *ngFor="let time of medicine.times; let i = index">
+                                {{time.value | date: 'HH:mm'}}{{i==medicine.times.length-1 ? '.' : ',  '}}
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+            </ion-item>
+
+
+            <ion-item *ngIf="!toShow.is_view" class="add_medicine" (click)="add_medicine(null)">
+                <div class="item_inner d-flex">
+                    <div class="icon_box">
+                        <ion-icon class="zmdi zmdi-plus ion-text-center">
+                        </ion-icon>
+                    </div>
+                    <div class="text_box">
+                        <h2 class="d-flex">
+                            {{'add_medicine' | translate}}
+                        </h2>
+                    </div>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none" *ngIf="!toShow.is_view || (toShow.notes && toShow.notes.length)" >
+                <div class="item_inner d-flex">
+                    <ion-icon class="zmdi zmdi-edit ion-text-start"></ion-icon>
+                    <ion-textarea type="text" [(ngModel)]="toShow.notes" [readonly]="toShow.is_view" maxlength="500"
+                        rows="5" placeholder="{{'write_your_message' | translate}}"></ion-textarea>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="actionPrescriReport()">
+        <ion-fab-button mode="md">
+            <ion-icon [ngClass]="toShow.is_view ? 'zmdi zmdi-arrow-left' : 'zmdi zmdi-mail-send' " ></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'phone_verification' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div id="recaptcha-container"></div>
+	<div class="form">
+		<p class="ion-text-center animate__animated animate__fadeInUp" style="--animate-duration: .3s;">{{'verification_text' | translate}} {{phoneNumberFull}} </p>
+
+		<ion-list lines="none">
+			<ion-item lines="none" class="animate__animated animate__fadeInUp"  style="--animate-duration: .35s;">
+				<ion-input class="ion-text-center" type="number" [(ngModel)]="otp"
+					placeholder="{{'enter_verification_code' | translate}}">
+				</ion-input>
+			</ion-item>
+
+			<ion-button size="large" shape="block" class="btn animate__animated animate__fadeInUp" (click)="verify()" style="--animate-duration: .4s;">
+				{{'verify' | translate}}
+			</ion-button>
+		</ion-list>
+<!--		 <h4 class="d-flex">0:22 min left <span class="end">{{'resend' | translate}}</span></h4> -->
+	</div>
+</ion-content>
